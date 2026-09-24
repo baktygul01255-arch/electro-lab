@@ -133,6 +133,7 @@
     });
 
     LAB.debugEditor = ed;          // для отладки и автотестов
+    var saveDraft = LAB.debounce(function () { if (!readonly && !cir) LAB.session.set(draftKey, ed.toJSON()); }, 300);
 
     /* палитра */
     function markTool(tool, type) {
@@ -239,7 +240,6 @@
       if (task) renderTask();
       saveDraft();
     }
-    var saveDraft = LAB.debounce(function () { if (!readonly && !cir) LAB.session.set(draftKey, ed.toJSON()); }, 300);
 
     /* панель задания */
     var ansVal = null;
